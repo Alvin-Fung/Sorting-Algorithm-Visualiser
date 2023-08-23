@@ -1,5 +1,5 @@
 import React from 'react';
-import SortingVisualiser from './SortingVisualiser';
+import SortingVisualiser from './SortingVisualiser/SortingVisualiser';
 import './App.css';
 
 function App() {
