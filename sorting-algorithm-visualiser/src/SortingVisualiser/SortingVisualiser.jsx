@@ -1,5 +1,5 @@
 import React from 'react';
-import * as sortingAlgorithms from './sortingAlgorithms/sortingAlgorithms';
+import * as sortingAlgorithms from './sortingAlgorithms/sortingAlgorithms.js';
 import './SortingVisualiser.css';
 
 export default class SortingVisualiser extends React.Component {
@@ -28,10 +28,13 @@ export default class SortingVisualiser extends React.Component {
     }
 
     mergeSort() {
-        const javaScriptSortedArray = this.state.array.slice().sort();
+        const javaScriptSortedArray = this.state.array.slice().sort((a, b) => a - b);
+        /*JS requires you to pass a sorting method, like shown here. Otherwise it will sort in weird way,
+        like how if you had 100 and 5, 100 will be shown first as it contains '1' as it's first digit.
+        */
         const sortedArray = sortingAlgorithms.mergeSort(this.state.array);
-
         console.log(sortedArray);
+
         console.log(arraysAreEqual(javaScriptSortedArray, sortedArray));
     }
 
@@ -69,9 +72,12 @@ function randomIntFromInterval(min, max) {
 }
 
 function arraysAreEqual(arrayOne, arrayTwo) {
-    if (arrayOne.length !== arrayTwo) return false;
+    if (arrayOne.length !== arrayTwo.length) return false;
     for (let i = 0; i < arrayOne.length; i++) {
-        if (arrayOne[i] !== arrayTwo[i]) return false;
+        if (arrayOne[i] !== arrayTwo[i])
+            console.log(arrayOne[i], arrayTwo[i]);
+        return false;
+
     }
     return true;
 }
