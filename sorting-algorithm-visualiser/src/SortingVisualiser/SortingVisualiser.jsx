@@ -1,4 +1,5 @@
 import React from 'react';
+import * as sortingAlgorithms from './sortingAlgorithms/sortingAlgorithms';
 import './SortingVisualiser.css';
 
 export default class SortingVisualiser extends React.Component {
@@ -27,7 +28,11 @@ export default class SortingVisualiser extends React.Component {
     }
 
     mergeSort() {
+        const javaScriptSortedArray = this.state.array.slice().sort();
+        const sortedArray = sortingAlgorithms.mergeSort(this.state.array);
 
+        console.log(sortedArray);
+        console.log(arraysAreEqual(javaScriptSortedArray, sortedArray));
     }
 
     quickSort() { }
@@ -62,3 +67,12 @@ export default class SortingVisualiser extends React.Component {
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+function arraysAreEqual(arrayOne, arrayTwo) {
+    if (arrayOne.length !== arrayTwo) return false;
+    for (let i = 0; i < arrayOne.length; i++) {
+        if (arrayOne[i] !== arrayTwo[i]) return false;
+    }
+    return true;
+}
+
