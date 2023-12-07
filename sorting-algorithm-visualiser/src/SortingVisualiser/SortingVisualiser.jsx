@@ -1,5 +1,5 @@
 import React from 'react';
-import * as sortingAlgorithms from './sortingAlgorithms/sortingAlgorithms.js';
+import * as sortingAlgorithms from '../sortingAlgorithms/sortingAlgorithms.js';
 import './SortingVisualiser.css';
 
 export default class SortingVisualiser extends React.Component {
@@ -28,10 +28,12 @@ export default class SortingVisualiser extends React.Component {
     }
 
     mergeSort() {
-        const javaScriptSortedArray = this.state.array.slice().sort((a, b) => a - b);
         /*JS requires you to pass a sorting method, like shown here. Otherwise it will sort in weird way,
         like how if you had 100 and 5, 100 will be shown first as it contains '1' as it's first digit.
         */
+        const javaScriptSortedArray = this.state.array
+            .slice()
+            .sort((a, b) => a - b);
         const sortedArray = sortingAlgorithms.mergeSort(this.state.array);
         console.log(sortedArray);
 
@@ -43,6 +45,18 @@ export default class SortingVisualiser extends React.Component {
     heapSort() { }
 
     bubbleSort() { }
+
+    testSortingAlgorithms() {
+        for (let i = 0; i < 100; i++) {
+            const array = [];
+            for (let i = 0; i < randomIntFromInterval(1, 1000); i++) {
+                array.push(randomIntFromInterval(-1000, 100));
+            }
+            const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
+            const mergeSortedArray = sortingAlgorithms.mergeSort(array.slice());
+            console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
+        }
+    }
 
     render() {
         const { array } = this.state;
@@ -75,8 +89,8 @@ function arraysAreEqual(arrayOne, arrayTwo) {
     if (arrayOne.length !== arrayTwo.length) return false;
     for (let i = 0; i < arrayOne.length; i++) {
         if (arrayOne[i] !== arrayTwo[i])
-            console.log(arrayOne[i], arrayTwo[i]);
-        return false;
+            // console.log(arrayOne[i], arrayTwo[i]);
+            return false;
 
     }
     return true;
