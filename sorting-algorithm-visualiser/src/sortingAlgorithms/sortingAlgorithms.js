@@ -6,15 +6,38 @@ export function mergeSort(array) {
     return animations;
 };
 
-//Apparently algoexpert.io/clem website won't allow me to understand this tutorials version of a merge sort as it's a paid product :(
+//Apparently algoexpert.io/clem website won't allow me to understand this tutorial's version of a merge sort as it's a paid product :(
 function mergeSortHelper(
     mainArray,
     startIdx,
     endIdx,
-    auxiliaryArray,
+    auxiliaryArray, //Used to be swapped out and have valued overidden
     animations) {
     if (startIdx === endIdx) return;
     const middleIdx = Math.floor((startIdx + endIdx) / 2);
     mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
     mergeSortHelper(auxiliaryArray, middleIdx, endIdx, auxiliaryArray, animations);
+}
+
+function doMerge(
+    mainArray,
+    startIdx,
+    endIdx,
+    auxiliaryArray,
+    animations) {
+    let k = startIdx;
+    let i = startIdx;
+    let j = middleIdx + 1;
+    while (i <= middleIdx && j <= endIdx) {
+        const animation = {};
+        animation.comparision = [i, j]; //These are the two values that will be coloured in.
+        if (auxiliaryArray[i] <= auxiliaryArray[k]) {
+            animation.swap = [k, j];
+            mainArray[k++] = auxiliaryArray[i++];
+        } else {
+            animation.swap = [k, j];
+            mainArray[k++] = auxiliaryArray[j++];
+        }
+        animations.push(animation);
+    }
 }

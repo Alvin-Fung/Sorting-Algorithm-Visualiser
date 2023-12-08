@@ -28,57 +28,70 @@ export default class SortingVisualiser extends React.Component {
     }
 
     mergeSort() {
-        /*JS requires you to pass a sorting method, like shown here. Otherwise it will sort in weird way,
-        like how if you had 100 and 5, 100 will be shown first as it contains '1' as it's first digit.*/
-        const javaScriptSortedArray = this.state.array
-            .slice()
-            .sort((a, b) => a - b);
-        const sortedArray = sortingAlgorithms.mergeSort(this.state.array);
-        console.log(sortedArray);
-
-        console.log(arraysAreEqual(javaScriptSortedArray, sortedArray));
-    }
-
-    quickSort() { }
-
-    heapSort() { }
-
-    bubbleSort() { }
-
-    testSortingAlgorithms() {
-        for (let i = 0; i < 100; i++) { //Creates 100 arrays
-            const array = [];
-            const length = randomIntFromInterval(1, 1000);
-            for (let i = 0; i < length; i++) {
-                array.push(randomIntFromInterval(-1000, 100));
-            }
-            const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
-            const mergeSortedArray = sortingAlgorithms.mergeSort(array.slice());
-            console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
+        const animations = sortingAlgorithms.mergeSort(this.state.array);
+        for (let i = 0; i < animations.length; i++) {
+            const { comparison, swap } = animations[i];
+            setTimeout(() => {
+                const arrayBars = document.getElementsByClassName('array-bar');
+                arrayBars[comparison[1]].style.backgroundColor = 'red';
+                arrayBars[comparison[0]].style.backgroundColor = 'red';
+                setTimeout(() => {
+                    arrayBars[comparison[1]].style.backgroundColor = 'turquoise';
+                    arrayBars[comparison[0]].style.backgroundColor = 'turquoise';
+                }, (i + 1) * 10);
+            }, i * 10);
         }
     }
 
-    render() {
-        const { array } = this.state;
+    // const javaScriptSortedArray = this.state.array
+    //     .slice()
+    //     .sort((a, b) => a - b);
+    // const sortedArray = sortingAlgorithms.mergeSort(this.state.array);
+    // console.log(sortedArray);
 
-        return (
-            <div className="array-container">
-                {array.map((value, idx) => (
-                    <div
-                        className="array-bar"
-                        key={idx}
-                        style={{ height: `${value}px` }}></div>
-                ))}
-                <button onClick={() => this.resetArray()}>Generate New Array</button>
-                <button onClick={() => this.mergeSort()}>Merge Sort</button>
-                <button onClick={() => this.quickSort()}>Quick Sort</button>
-                <button onClick={() => this.heapSort()}>Heap Sort</button>
-                <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-                <button onClick={() => this.testSortingAlgorithms()}>Testing Sorting Algorithms</button>
-            </div>
-        );
+    // console.log(arraysAreEqual(javaScriptSortedArray, sortedArray));
+}
+
+quickSort() { }
+
+heapSort() { }
+
+bubbleSort() { }
+
+testSortingAlgorithms() {
+    for (let i = 0; i < 100; i++) { //Creates 100 arrays
+        const array = [];
+        const length = randomIntFromInterval(1, 1000);
+        for (let i = 0; i < length; i++) {
+            array.push(randomIntFromInterval(-1000, 100));
+        }
+        const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
+        const mergeSortedArray = sortingAlgorithms.mergeSort(array.slice());
+        console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
     }
 }
+
+render() {
+    const { array } = this.state;
+
+    return (
+        <div className="array-container">
+            {array.map((value, idx) => (
+                <div
+                    className="array-bar"
+                    key={idx}
+                    style={{ height: `${value}px` }}></div>
+            ))}
+            <button onClick={() => this.resetArray()}>Generate New Array</button>
+            <button onClick={() => this.mergeSort()}>Merge Sort</button>
+            <button onClick={() => this.quickSort()}>Quick Sort</button>
+            <button onClick={() => this.heapSort()}>Heap Sort</button>
+            <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+            <button onClick={() => this.testSortingAlgorithms()}>Testing Sorting Algorithms</button>
+        </div>
+    );
+}
+
 
 
 //Source: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range#:~:text=You%20only%20need%20to%20call,max%20(non-inclusive).
