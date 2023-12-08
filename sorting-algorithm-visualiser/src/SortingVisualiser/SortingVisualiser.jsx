@@ -29,8 +29,7 @@ export default class SortingVisualiser extends React.Component {
 
     mergeSort() {
         /*JS requires you to pass a sorting method, like shown here. Otherwise it will sort in weird way,
-        like how if you had 100 and 5, 100 will be shown first as it contains '1' as it's first digit.
-        */
+        like how if you had 100 and 5, 100 will be shown first as it contains '1' as it's first digit.*/
         const javaScriptSortedArray = this.state.array
             .slice()
             .sort((a, b) => a - b);
@@ -47,9 +46,10 @@ export default class SortingVisualiser extends React.Component {
     bubbleSort() { }
 
     testSortingAlgorithms() {
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 100; i++) { //Creates 100 arrays
             const array = [];
-            for (let i = 0; i < randomIntFromInterval(1, 1000); i++) {
+            const length = randomIntFromInterval(1, 1000);
+            for (let i = 0; i < length; i++) {
                 array.push(randomIntFromInterval(-1000, 100));
             }
             const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
@@ -74,6 +74,7 @@ export default class SortingVisualiser extends React.Component {
                 <button onClick={() => this.quickSort()}>Quick Sort</button>
                 <button onClick={() => this.heapSort()}>Heap Sort</button>
                 <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+                <button onClick={() => this.testSortingAlgorithms()}>Testing Sorting Algorithms</button>
             </div>
         );
     }
@@ -91,7 +92,6 @@ function arraysAreEqual(arrayOne, arrayTwo) {
         if (arrayOne[i] !== arrayTwo[i])
             // console.log(arrayOne[i], arrayTwo[i]);
             return false;
-
     }
     return true;
 }

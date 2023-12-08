@@ -1,8 +1,10 @@
-export const mergeSort = array => {
+export const getMergeSortAnimations
+
+export const mergeSort = (array, animations = []) => {
     if (array.length === 1) return array;
-    const midIndex = Math.floor(array.length / 2);
-    const firstHalf = mergeSort(array.slice(0, midIndex));
-    const secondHalf = mergeSort(array.slice(midIndex));
+    const midIdx = Math.floor(array.length / 2);
+    const firstHalf = mergeSort(array.slice(0, midIdx));
+    const secondHalf = mergeSort(array.slice(midIdx));
     const sortedArray = [];
     let i = 0, j = 0;
 
@@ -13,12 +15,7 @@ export const mergeSort = array => {
             sortedArray.push(secondHalf[j++]);
         }
     }
-    while (i < firstHalf.length) {
-        sortedArray.push(firstHalf[i++]);
-    }
-
-    while (j < secondHalf.length) {
-        sortedArray.push(secondHalf[j++]);
-    }
+    while (i < firstHalf.length) { sortedArray.push(firstHalf[i++]); }
+    while (j < secondHalf.length) { sortedArray.push(secondHalf[j++]); }
     return sortedArray;
 };
