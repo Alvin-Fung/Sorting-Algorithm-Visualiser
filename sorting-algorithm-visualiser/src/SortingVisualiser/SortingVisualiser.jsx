@@ -43,6 +43,7 @@ export default class SortingVisualiser extends React.Component {
         }
     }
 
+
     // const javaScriptSortedArray = this.state.array
     //     .slice()
     //     .sort((a, b) => a - b);
@@ -50,28 +51,29 @@ export default class SortingVisualiser extends React.Component {
     // console.log(sortedArray);
 
     // console.log(arraysAreEqual(javaScriptSortedArray, sortedArray));
-}
 
-quickSort() { }
+    quickSort() { }
 
-heapSort() { }
+    heapSort() { }
 
-bubbleSort() { }
+    bubbleSort() { }
 
-testSortingAlgorithms() {
-    for (let i = 0; i < 100; i++) { //Creates 100 arrays
-        const array = [];
-        const length = randomIntFromInterval(1, 1000);
-        for (let i = 0; i < length; i++) {
-            array.push(randomIntFromInterval(-1000, 100));
+    testSortingAlgorithms() {
+        for (let i = 0; i < 100; i++) { //Creates 100 arrays
+            const array = [];
+            const length = randomIntFromInterval(1, 1000);
+            for (let i = 0; i < length; i++) {
+                array.push(randomIntFromInterval(-1000, 100));
+            }
+            const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
+            const mergeSortedArray = sortingAlgorithms.mergeSort(array.slice());
+            console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
         }
-        const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
-        const mergeSortedArray = sortingAlgorithms.mergeSort(array.slice());
-        console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
     }
 }
 
-render() {
+
+render(){
     const { array } = this.state;
 
     return (
@@ -91,7 +93,6 @@ render() {
         </div>
     );
 }
-
 
 
 //Source: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range#:~:text=You%20only%20need%20to%20call,max%20(non-inclusive).
