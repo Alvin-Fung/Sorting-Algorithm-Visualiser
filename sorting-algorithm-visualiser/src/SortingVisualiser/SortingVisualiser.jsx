@@ -70,28 +70,28 @@ export default class SortingVisualiser extends React.Component {
             console.log(arraysAreEqual(javaScriptSortedArray, mergeSortedArray));
         }
     }
-}
 
+    render() {
 
-render(){
-    const { array } = this.state;
+        const { array } = this.state;
 
-    return (
-        <div className="array-container">
-            {array.map((value, idx) => (
-                <div
-                    className="array-bar"
-                    key={idx}
-                    style={{ height: `${value}px` }}></div>
-            ))}
-            <button onClick={() => this.resetArray()}>Generate New Array</button>
-            <button onClick={() => this.mergeSort()}>Merge Sort</button>
-            <button onClick={() => this.quickSort()}>Quick Sort</button>
-            <button onClick={() => this.heapSort()}>Heap Sort</button>
-            <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-            <button onClick={() => this.testSortingAlgorithms()}>Testing Sorting Algorithms</button>
-        </div>
-    );
+        return (
+            <div className="array-container">
+                {array.map((value, idx) => (
+                    <div
+                        className="array-bar"
+                        key={idx}
+                        style={{ height: `${value}px` }}></div>
+                ))}
+                <button onClick={() => this.resetArray()}>Generate New Array</button>
+                <button onClick={() => this.mergeSort()}>Merge Sort</button>
+                <button onClick={() => this.quickSort()}>Quick Sort</button>
+                <button onClick={() => this.heapSort()}>Heap Sort</button>
+                <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+                <button onClick={() => this.testSortingAlgorithms()}>Testing Sorting Algorithms</button>
+            </div>
+        );
+    }
 }
 
 
