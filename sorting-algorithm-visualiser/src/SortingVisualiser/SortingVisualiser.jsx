@@ -40,7 +40,8 @@ export default class SortingVisualiser extends React.Component {
                     arrayBars[comparison[1]].style.backgroundColor = 'turquoise';
                     arrayBars[comparison[0]].style.backgroundColor = 'turquoise';
                 }, (i + 1) * 10);
-            }, i * 10);
+            }, i * 10); /*Every 10 seconds, at each index i will be multiplied 
+            by the delay of the set timeout by that index*/
         }
     }
 
