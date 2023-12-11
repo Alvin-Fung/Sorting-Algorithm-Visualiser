@@ -81,7 +81,8 @@ export default class SortingVisualiser extends React.Component {
                     <div
                         className="array-bar"
                         key={idx}
-                        style={{ height: `${value}px` }}></div>
+                        style={{ height: `${value}px` }}>
+                    </div>
                 ))}
                 <button onClick={() => this.resetArray()}>Generate New Array</button>
                 <button onClick={() => this.mergeSort()}>Merge Sort</button>
