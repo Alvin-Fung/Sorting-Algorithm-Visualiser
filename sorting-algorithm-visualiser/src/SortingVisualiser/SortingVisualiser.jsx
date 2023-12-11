@@ -31,18 +31,18 @@ export default class SortingVisualiser extends React.Component {
         const animations = sortingAlgorithms.mergeSort(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             const { comparison, swap } = animations[i];
+            //I'm having a maximum call stack size exceeded here, might need to rework this
             setTimeout(() => {
                 const arrayBars = document.getElementsByClassName('array-bar');
                 arrayBars[comparison[1]].style.backgroundColor = 'red';
                 arrayBars[comparison[0]].style.backgroundColor = 'red';
                 setTimeout(() => {
-                    arrayBars[comparison[1]].style.backgroundColor = 'turquoise';
-                    arrayBars[comparison[0]].style.backgroundColor = 'turquoise';
+                    // arrayBars[comparison[1]].style.backgroundColor = 'turquoise';
+                    // arrayBars[comparison[0]].style.backgroundColor = 'turquoise';
                 }, (i + 1) * 10);
             }, i * 10);
         }
     }
-
 
     // const javaScriptSortedArray = this.state.array
     //     .slice()

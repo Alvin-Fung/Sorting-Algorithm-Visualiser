@@ -22,6 +22,7 @@ function mergeSortHelper(
 function doMerge(
     mainArray,
     startIdx,
+    middleIdx,
     endIdx,
     auxiliaryArray,
     animations) {
@@ -39,5 +40,19 @@ function doMerge(
             mainArray[k++] = auxiliaryArray[j++];
         }
         animations.push(animation);
+    }
+    while (i <= middleIdx) {
+        animations.push({
+            comparison: [i, i],
+            swap: [k, i],
+        });
+        mainArray[k++] = auxiliaryArray[i++];
+    }
+    while (i <= endIdx) {
+        animations.push({
+            comparison: [j, j],
+            swap: [k, j],
+        });
+        mainArray[k++] = auxiliaryArray[j++];
     }
 }
