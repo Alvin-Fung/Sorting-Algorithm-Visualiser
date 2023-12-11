@@ -12,11 +12,13 @@ function mergeSortHelper(
     startIdx,
     endIdx,
     auxiliaryArray, //Used to be swapped out and have valued overidden
-    animations) {
+    animations
+) {
     if (startIdx === endIdx) return;
     const middleIdx = Math.floor((startIdx + endIdx) / 2);
     mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
     mergeSortHelper(auxiliaryArray, middleIdx, endIdx, auxiliaryArray, animations);
+    doMerge(mainArray, startIdx, endIdx, auxiliaryArray, animations);
 }
 
 function doMerge(
