@@ -20,7 +20,7 @@ export default class SortingVisualiser extends React.Component {
     //Reused for the generate array button.
     resetArray() {
         const array = [];
-        for (let i = 0; i < 310; i++) {
+        for (let i = 0; i < 100; i++) {
             //the value of 5 is arbitary but any less may cause for unideal visual representation of the array.
             array.push(randomIntFromInterval(5, 730));
         }
@@ -29,19 +29,31 @@ export default class SortingVisualiser extends React.Component {
 
     mergeSort() {
         const animations = sortingAlgorithms.mergeSort(this.state.array);
-        for (let i = 0; i < animations.length; i++) {
-            const { comparison, swap } = animations[i];
-            //I'm having a maximum call stack size exceeded here, might need to rework this
-            setTimeout(() => {
-                const arrayBars = document.getElementsByClassName('array-bar');
-                arrayBars[comparison[1]].style.backgroundColor = 'red';
-                arrayBars[comparison[0]].style.backgroundColor = 'red';
+        const newAnimations = [];
+        for (const animation of animations) {
+            newAnimations.push(animation.comparison);
+            newAnimations.push(animation.comparison);
+            newAnimations.push(animation.swap);
+        }
+        for (let i = 0; i < newAnimations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array-bar');
+            const [barOneIdx, barTwoIdx] = newAnimations[i];
+            const barOneStyle = arrayBars[barOneIdx].style;
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const isColorChange = i % 3 !== 2;
+            if (isColorChange) {
+                const color = i % 3 === 0 ? 'red' : 'turquoise';
                 setTimeout(() => {
-                    arrayBars[comparison[1]].style.backgroundColor = 'turquoise';
-                    arrayBars[comparison[0]].style.backgroundColor = 'turquoise';
-                }, (i + 1) * 10);
-            }, i * 10); /*Every 10 seconds, at each index i will be multiplied 
-            by the delay of the set timeout by that index*/
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * 3);
+            } else {
+                setTimeout(() => {
+                    const tempHeight = barOneStyle.height;
+                    barOneStyle.height = barTwoStyle.height;
+                    barTwoStyle.height = tempHeight;
+                }, i * 3);
+            }
         }
     }
 
