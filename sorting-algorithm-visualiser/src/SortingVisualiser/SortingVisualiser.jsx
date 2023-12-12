@@ -37,22 +37,25 @@ export default class SortingVisualiser extends React.Component {
         }
         for (let i = 0; i < newAnimations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
-            const [barOneIdx, barTwoIdx] = newAnimations[i];
-            const barOneStyle = arrayBars[barOneIdx].style;
-            const barTwoStyle = arrayBars[barTwoIdx].style;
-            const isColorChange = i % 3 !== 2;
+            const isColorChange = i % 3 !== 2; //Every three values, we have a new start of a new animation
             if (isColorChange) {
+                const [barOneIdx, barTwoIdx] = newAnimations[i];
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
                 const color = i % 3 === 0 ? 'red' : 'turquoise';
+                //If it's the first of a triplet, the color will be red
+                //Then if it's at the second of the triplet, the color will be back to turquoise once compared
+                //The third is the swap
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * 3);
+                }, i * 10);
             } else {
                 setTimeout(() => {
-                    const tempHeight = barOneStyle.height;
-                    barOneStyle.height = barTwoStyle.height;
-                    barTwoStyle.height = tempHeight;
-                }, i * 3);
+                    const [barOneIdx, newHeight] = newAnimations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * 10);
             }
         }
     }
@@ -97,12 +100,16 @@ export default class SortingVisualiser extends React.Component {
                         style={{ height: `${value}px` }}>
                     </div>
                 ))}
-                <button onClick={() => this.resetArray()}>Generate New Array</button>
-                <button onClick={() => this.mergeSort()}>Merge Sort</button>
-                <button onClick={() => this.quickSort()}>Quick Sort</button>
-                <button onClick={() => this.heapSort()}>Heap Sort</button>
-                <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-                <button onClick={() => this.testSortingAlgorithms()}>Testing Sorting Algorithms</button>
+                <div>
+                    <div>
+                        <button onClick={() => this.resetArray()}>Generate New Array</button>
+                    </div>
+                    <button onClick={() => this.mergeSort()}>Merge Sort</button>
+                    <button onClick={() => this.quickSort()}>Quick Sort</button>
+                    <button onClick={() => this.heapSort()}>Heap Sort</button>
+                    <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+                    <button onClick={() => this.testSortingAlgorithms()}>Testing Sorting Algorithms</button>
+                </div>
             </div>
         );
     }

@@ -28,18 +28,19 @@ function doMerge(
     middleIdx,
     endIdx,
     auxiliaryArray,
-    animations) {
+    animations
+) {
     let k = startIdx;
     let i = startIdx;
     let j = middleIdx + 1;
     while (i <= middleIdx && j <= endIdx) {
         const animation = {};
-        animation.comparison = [i, j]; //These are the two values that will be coloured at any given time.
+        animation.comparison = [i, j];
         if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-            animation.swap = [k, i];
+            animation.swap = [k, auxiliaryArray[i]];
             mainArray[k++] = auxiliaryArray[i++];
         } else {
-            animation.swap = [k, j];
+            animation.swap = [k, auxiliaryArray[j]];
             mainArray[k++] = auxiliaryArray[j++];
         }
         animations.push(animation);
@@ -47,14 +48,14 @@ function doMerge(
     while (i <= middleIdx) {
         animations.push({
             comparison: [i, i],
-            swap: [k, i],
+            swap: [k, auxiliaryArray[i]],
         });
         mainArray[k++] = auxiliaryArray[i++];
     }
     while (j <= endIdx) {
         animations.push({
             comparison: [j, j],
-            swap: [k, j],
+            swap: [k, auxiliaryArray[j]],
         });
         mainArray[k++] = auxiliaryArray[j++];
     }

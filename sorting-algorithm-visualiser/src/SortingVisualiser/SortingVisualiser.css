@@ -1,7 +1,7 @@
 .array-container {
-    position: absolute;
+    position: center;
     left: 100px;
-    /* top: 100px; */
+    top: 100px;
 }
 
 .array-bar {
@@ -10,8 +10,4 @@
     display: inline-block;
     margin: 0 1px;
     /* One pixel on the left and right*/
-}
-
-button {
-    position: bottom;
 }
