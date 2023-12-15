@@ -20,7 +20,7 @@ export default class SortingVisualiser extends React.Component {
     //Reused for the generate array button.
     resetArray() {
         const array = [];
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 310; i++) {
             //the value of 5 is arbitary but any less may cause for unideal visual representation of the array.
             array.push(randomIntFromInterval(5, 730));
         }
@@ -49,13 +49,13 @@ export default class SortingVisualiser extends React.Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * 10);
+                }, i * 3);
             } else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = newAnimations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * 10);
+                }, i * 3);
             }
         }
     }

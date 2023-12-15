@@ -33,30 +33,27 @@ function doMerge(
     let k = startIdx;
     let i = startIdx;
     let j = middleIdx + 1;
+
     while (i <= middleIdx && j <= endIdx) {
-        const animation = {};
-        animation.comparison = [i, j];
+
+        animations.push([i, j]);
+        animations.push([i, j]);
         if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-            animation.swap = [k, auxiliaryArray[i]];
+            animations.push([k, auxiliaryArray[i]]);
             mainArray[k++] = auxiliaryArray[i++];
         } else {
-            animation.swap = [k, auxiliaryArray[j]];
+            animations.push([k, auxiliaryArray[j]]);
             mainArray[k++] = auxiliaryArray[j++];
         }
-        animations.push(animation);
     }
     while (i <= middleIdx) {
-        animations.push({
-            comparison: [i, i],
-            swap: [k, auxiliaryArray[i]],
-        });
+        animations.push([i, i]);
+        animations.push([i, j]);
         mainArray[k++] = auxiliaryArray[i++];
     }
     while (j <= endIdx) {
-        animations.push({
-            comparison: [j, j],
-            swap: [k, auxiliaryArray[j]],
-        });
+        animations.push([j, j]);
+        animations.push([j, j]);
         mainArray[k++] = auxiliaryArray[j++];
     }
 }
