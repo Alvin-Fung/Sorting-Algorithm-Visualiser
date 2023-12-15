@@ -2,6 +2,13 @@ import React from 'react';
 import * as sortingAlgorithms from '../sortingAlgorithms/sortingAlgorithms.js';
 import './SortingVisualiser.css';
 
+//Constants
+//Change this value for the speed of the animations(In milliseconds).
+const animationSpeed = 3;
+
+//Change this value for the number of bars(value) in the array.
+const numberOfArrayBars = 310;
+
 export default class SortingVisualiser extends React.Component {
     constructor(props) {
         super(props);
@@ -20,7 +27,7 @@ export default class SortingVisualiser extends React.Component {
     //Reused for the generate array button.
     resetArray() {
         const array = [];
-        for (let i = 0; i < 310; i++) {
+        for (let i = 0; i < numberOfArrayBars; i++) {
             //the value of 5 is arbitary but any less may cause for unideal visual representation of the array.
             array.push(randomIntFromInterval(5, 730));
         }
