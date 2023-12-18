@@ -51,7 +51,7 @@ function doMerge(
         //These two values are getting compared for the first time, they're pushed to change their colour.
         animations.push([i, i]);
         //These two values are getting compared for the second time, they're pushed again to revert their colour.
-        animations.push([i, j]);
+        animations.push([i, i]);
         //The value of index k in the main array gets overwritten with the
         //value of index i in the auxiliary array. 
         animations.push([k, auxiliaryArray[i]]);
