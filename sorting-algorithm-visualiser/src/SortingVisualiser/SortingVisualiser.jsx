@@ -1,5 +1,5 @@
 import React from 'react';
-import { getMergeSortAnimations } from '../sortingAlgorithms/sortingAlgorithms.js';
+import { getMergeSortAnimations } from '../sortingAlgorithms/mergeSort.js';
 import './SortingVisualiser.css';
 
 //Constants
