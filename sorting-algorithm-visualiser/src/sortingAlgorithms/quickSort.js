@@ -12,9 +12,8 @@ function quickSortHelper(
     animations) {
     if (startIdx === endIdx) {
         const pivotIdx = partition(mainArray, startIdx, endIdx, animations);
-        quickSortHelper(startIdx, startIdx - 1, mainArray, animations);
-        quickSortHelper(middleIdx + 1, mainArray, animations);
-        partition(startIdx, middleIdx, endIdx, mainArray, animations);
+        quickSortHelper(mainArray, startIdx, pivotIdx = 1, animations);
+        quickSortHelper(mainArray, pivotIdx + 1, endIdx, animations);
     }
 }
 
