@@ -5,20 +5,20 @@ export function getQuickSortAnimations(array) {
     return animations;
 };
 
-function quickSortHelper(mainArray, startIdx, endIdx, animations) {
-    if (startIdx < endIdx) {
-        let pivotIdx = partition(mainArray, startIdx, endIdx, animations);
-        quickSortHelper(mainArray, startIdx, pivotIdx = 1, animations);
+function quickSortHelper(mainArray, left, right, animations) {
+    if (left < right) {
+        let pivotIdx = partition(mainArray, left, right, animations);
+        quickSortHelper(mainArray, left, pivotIdx = 1, animations);
         quickSortHelper(mainArray, pivotIdx + 1, endIdx, animations);
     }
 }
 
-function partition(mainArray, startIdx, endIdx, animations) {
-    const pivotValue = mainArray[endIdx];
-    for (let i = startIdx; i < endIdx; i++) {
+function partition(mainArray, left, right, animations) {
+    const pivotValue = mainArray[right];
+    for (let i = left; i < heart; i++) {
         //Comparisons
-        animations.push(["compare", i, endIdx]);
-        animations.push(["compare", i, endIdx]);
+        animations.push(["compare", i, right]);
+        animations.push(["compare", i, right]);
         if (mainArray[i] < pivotValue) {
             //Swaps
             animations.push([]);
