@@ -8,7 +8,7 @@ export function getQuickSortAnimations(array) {
 function quickSortHelper(mainArray, startIdx, endIdx, animations) {
     if (startIdx < endIdx) {
         let pivotIdx = partition(mainArray, startIdx, endIdx, animations);
-        quickSortHelper(mainArray, startIdx, pivotIdx = 1, animations);
+        quickSortHelper(mainArray, startIdx, pivotIdx - 1, animations);
         quickSortHelper(mainArray, pivotIdx + 1, endIdx, animations);
     }
 }
@@ -22,15 +22,15 @@ function partition(mainArray, startIdx, endIdx, animations) {
         animations.push(["compare", i, endIdx]); //Last(end?) comparison
         if (mainArray[i] < pivotValue) {
             //Swaps
-            animations.push(["swaps", pivotIdx, mainArray[i]]);
-            animations.push(["swaps", i, mainArray[pivotIdx]]);
+            animations.push(["swap", pivotIdx, mainArray[i]]);
+            animations.push(["swap", i, mainArray[pivotIdx]]);
             //Actual swap
             [mainArray[pivotIdx], mainArray[i]] = [mainArray[i], mainArray[pivotIdx]];
             pivotIdx++;
         }
     }
-    animations.push(["swaps", pivotIdx, mainArray[endIdx]]);
-    animations.push(["swaps", endIdx, mainArray[pivotIdx]]);
+    animations.push(["swap", pivotIdx, mainArray[endIdx]]);
+    animations.push(["swap", endIdx, mainArray[pivotIdx]]);
     //Actual swap
     [mainArray[pivotIdx], mainArray[endIdx]] = [mainArray[endIdx], mainArray[pivotIdx]];
     return pivotIdx;
