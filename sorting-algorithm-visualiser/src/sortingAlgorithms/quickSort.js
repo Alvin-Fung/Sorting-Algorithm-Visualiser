@@ -26,8 +26,8 @@ function partition(mainArray, startIdx, endIdx, animations) {
             animations.push(["swaps", i, mainArray[pivotIdx]]);
             pivotIdx++;
         }
-        animations.push(["swaps", pivotIdx, mainArray[endIdx]]);
-        animations.push(["swaps", endIdx, mainArray[pivotIdx]]);
-        return pivotIdx;
     }
+    animations.push(["swaps", pivotIdx, mainArray[endIdx]]);
+    animations.push(["swaps", endIdx, mainArray[pivotIdx]]);
+    return pivotIdx;
 }
