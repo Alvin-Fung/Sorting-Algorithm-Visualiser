@@ -15,15 +15,16 @@ function quickSortHelper(mainArray, startIdx, endIdx, animations) {
 
 function partition(mainArray, startIdx, endIdx, animations) {
     const pivotValue = mainArray[endIdx];
-    const pivotIndex = startIdx;
+    const pivotIdx = startIdx;
     for (let i = startIdx; i < endIdx; i++) {
         //Comparisons
         animations.push(["compare", i, endIdx]);
         animations.push(["compare", i, endIdx]);
         if (mainArray[i] < pivotValue) {
             //Swaps
-            animations.push(["swaps",]);
-            animations.push(["swaps",]);
+            animations.push(["swaps", pivotIdx, mainArray[i]]);
+            animations.push(["swaps", i, mainArray[pivotIdx]]);
+            pivotIdx++;
         }
     }
 }

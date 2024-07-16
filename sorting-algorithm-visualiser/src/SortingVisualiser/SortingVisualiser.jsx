@@ -74,7 +74,10 @@ export default class SortingVisualiser extends React.Component {
     // console.log(arraysAreEqual(javaScriptSortedArray, sortedArray));
 
     quickSort() {
-        // const animations = getQuickSortAnimations(this.state.array);
+        const animations = getQuickSortAnimations(this.state.array);
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array-bar');
+        }
     }
 
     heapSort() { }
