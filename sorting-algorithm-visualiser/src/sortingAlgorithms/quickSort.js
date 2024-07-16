@@ -15,7 +15,7 @@ function quickSortHelper(mainArray, startIdx, endIdx, animations) {
 
 function partition(mainArray, startIdx, endIdx, animations) {
     const pivotValue = mainArray[endIdx];
-    const pivotIdx = startIdx;
+    let pivotIdx = startIdx;
     for (let i = startIdx; i < endIdx; i++) {
         //Comparisons
         animations.push(["compare", i, endIdx]); //First comparison
@@ -24,10 +24,14 @@ function partition(mainArray, startIdx, endIdx, animations) {
             //Swaps
             animations.push(["swaps", pivotIdx, mainArray[i]]);
             animations.push(["swaps", i, mainArray[pivotIdx]]);
+            //Actual swap
+            [mainArray[pivotIdx], mainArray[i]] = [mainArray[i], mainArray[pivotIdx]];
             pivotIdx++;
         }
     }
     animations.push(["swaps", pivotIdx, mainArray[endIdx]]);
     animations.push(["swaps", endIdx, mainArray[pivotIdx]]);
+    //Actual swap
+    [mainArray[pivotIdx], mainArray[endIdx]] = [mainArray[endIdx], mainArray[pivotIdx]];
     return pivotIdx;
 }
