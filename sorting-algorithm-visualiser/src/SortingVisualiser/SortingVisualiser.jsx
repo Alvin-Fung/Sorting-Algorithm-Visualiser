@@ -82,6 +82,10 @@ export default class SortingVisualiser extends React.Component {
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barOneStyle].style;
                 const color = i % 3 === 0 ? SECONDARY_COLOUR : PRIMARY_COLOUR;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * ANIMATION_SPEED);
             } else if (action === "swap") {
                 setTimeout(() => {
                     const barOneStyle = arrayBars[barOneIdx].style;
