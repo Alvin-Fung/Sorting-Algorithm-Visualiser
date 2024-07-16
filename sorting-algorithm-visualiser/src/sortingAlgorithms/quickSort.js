@@ -18,13 +18,16 @@ function partition(mainArray, startIdx, endIdx, animations) {
     const pivotIdx = startIdx;
     for (let i = startIdx; i < endIdx; i++) {
         //Comparisons
-        animations.push(["compare", i, endIdx]);
-        animations.push(["compare", i, endIdx]);
+        animations.push(["compare", i, endIdx]); //First comparison
+        animations.push(["compare", i, endIdx]); //Last(end?) comparison
         if (mainArray[i] < pivotValue) {
             //Swaps
             animations.push(["swaps", pivotIdx, mainArray[i]]);
             animations.push(["swaps", i, mainArray[pivotIdx]]);
             pivotIdx++;
         }
+        animations.push(["swaps", pivotIdx, mainArray[endIdx]]);
+        animations.push(["swaps", endIdx, mainArray[pivotIdx]]);
+        return pivotIdx;
     }
 }
