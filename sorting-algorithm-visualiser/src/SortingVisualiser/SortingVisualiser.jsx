@@ -77,7 +77,7 @@ export default class SortingVisualiser extends React.Component {
         const animations = getQuickSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
-            const [action, barOneIdx, barTwoIdx, newHeight] = animations[i];
+            const [action, barOneIdx, barTwoIdx] = animations[i];
             if (action === "compare") {
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
@@ -88,8 +88,11 @@ export default class SortingVisualiser extends React.Component {
                 }, i * ANIMATION_SPEED);
             } else if (action === "swap") {
                 setTimeout(() => {
+                    const [barOneIdx, barTwoIdx, newHeightOne, newHeightTwo] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
-                    barOneStyle.height = `${newHeight}px`;
+                    const barTwoStyle = arrayBars[barTwoIdx].style;
+                    barOneStyle.height = `${newHeightOne}px`;
+                    barTwoStyle.height = `${newHeightTwo}px`;
                 }, i * ANIMATION_SPEED);
             }
         }
