@@ -27,8 +27,7 @@ function partition(mainArray, startIdx, endIdx, animations) {
             pivotIdx++;
         }
     }
-    animations.push(["swap", pivotIdx, mainArray[endIdx]]);
-    animations.push(["swap", endIdx, mainArray[pivotIdx]]);
+    animations.push(["swap", pivotIdx, endIdx, mainArray[endIdx], mainArray[endIdx]]);
     //Actual swap
     [mainArray[pivotIdx], mainArray[endIdx]] = [mainArray[endIdx], mainArray[pivotIdx]];
     return pivotIdx;
