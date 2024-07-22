@@ -22,10 +22,8 @@ function partition(mainArray, startIdx, endIdx, animations) {
         animations.push(["compare", i, endIdx]); //Last(end?) comparison
         if (mainArray[i] < pivotValue) {
             //Swaps
-            animations.push(["swap", pivotIdx, mainArray[i]]);
-            animations.push(["swap", i, mainArray[pivotIdx]]);
-            //Actual swap
-            [mainArray[pivotIdx], mainArray[i]] = [mainArray[i], mainArray[pivotIdx]];
+            animations.push(["swap", pivotIdx, i, mainArray[i], mainArray[pivotIdx]]);
+            [mainArray[pivotIdx], mainArray[i]] = [mainArray[i], mainArray[pivotIdx]];  //Actual swap
             pivotIdx++;
         }
     }
