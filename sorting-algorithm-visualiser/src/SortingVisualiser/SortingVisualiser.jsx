@@ -65,14 +65,6 @@ export default class SortingVisualiser extends React.Component {
         }
     }
 
-    // const javaScriptSortedArray = this.state.array
-    //     .slice()
-    //     .sort((a, b) => a - b);
-    // const sortedArray = sortingAlgorithms.mergeSort(this.state.array);
-    // console.log(sortedArray);
-
-    // console.log(arraysAreEqual(javaScriptSortedArray, sortedArray));
-
     quickSort() {
         const animations = getQuickSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
